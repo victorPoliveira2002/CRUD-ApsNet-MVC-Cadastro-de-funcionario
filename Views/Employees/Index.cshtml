@@ -1,0 +1,54 @@
+﻿@model IEnumerable<CrudAspNet.Models.Employee>
+
+@{
+    ViewData["Title"] = "Funcionarios";
+}
+
+<p>
+    <a asp-action="AddOrEdit">Funcionarios</a>      
+</p>
+<table class="table table-hover">              <!--Efeito de sombra no mouse, quando passa o mouse em cima ele faz aquela sombra tipo como se fosse selecionar-->
+
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmpCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OfficeLocaliton)
+            </th>
+            <th>
+                <a asp-action="AddOrEdit" class="btn btn-outline-success" ><i class="far fa-plus-square">&nbsp</i>Novo</a>  <!--Primeira CLass: Difine a cor dele, o layout dele, já no segundo Class: Define a imagem visual do meu botão (O icone)-->
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EmpCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfficeLocaliton)
+                </td>
+                <td>
+                    <a asp-action="AddOrEdit" asp-route-id="@item.EmployeeId" class="btn btn-outline-primary"><i class="fa fa-marker fa-lg"></i></a> <!--Class: Define a imagem visual do meu botão (O icone) nesse caso é o icone do editar-->
+                    <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-outline-danger" oneclick="return confirm ('Deseja realmente deletar?')"><i class="fa fa-trash-alt fa-lg"></i></a> <!--Class: Define a imagem visual do meu botão (O icone) nesse caso é o icone do Deletar-->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

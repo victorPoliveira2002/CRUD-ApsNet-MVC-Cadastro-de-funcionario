@@ -1,0 +1,58 @@
+﻿@model CrudAspNet.Models.Employee
+
+@{
+    ViewData["Title"] = "Cadastro Funcionarios";
+}
+
+<div class="text-center">
+    
+    <h1> Cadastro Funcionarios </h1>
+
+</div>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="AddOrEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="EmployeeId" />            
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-row">              <!-- Criando outro tipo de tabela para deixar os campos "MATRICULA" e "CARGO" juntos um do lado do outro-->
+                <div class="form-group col-md-6">                   <!--Estou coloando o "cold-md-6 " para dar mais espaço-->
+                    <label asp-for="EmpCode" class="control-label"></label>
+                    <input asp-for="EmpCode" class="form-control" />
+                    <span asp-validation-for="EmpCode" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6">                                                            <!--Estou coloando o "cold-md-6 " para dar mais espaço-->
+                    <label asp-for="Position" class="control-label"></label>
+                    <input asp-for="Position" class="form-control" />
+                    <span asp-validation-for="Position" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeLocaliton" class="control-label"></label>
+                <input asp-for="OfficeLocaliton" class="form-control" />
+                <span asp-validation-for="OfficeLocaliton" class="text-danger"></span>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <input type="submit" value="Salvar" class="btn btn-primary btn-block" />                <!--A extensão "btn-block" faz com que o botão criado sejá um bloco, e não só um botão fixo.-->
+                </div>
+                <div class="form-group col-md-6">
+                    <a asp-action="Index" class="btn btn-danger btn-block">Voltar</a>                       <!--A extensão "btn-block" faz com que o botão criado sejá um bloco, e não só um botão fixo.-->
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
